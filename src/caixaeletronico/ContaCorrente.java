@@ -1,6 +1,7 @@
 package caixaeletronico;
 
 public class ContaCorrente {
+
     private String nomeCliente;
     private int numeroConta;
     private int numeroAgencia;
@@ -64,9 +65,9 @@ public class ContaCorrente {
     public void setLimiteChequeEspecial(double limite) {
         this.limiteChequeEspecial = limite;
     }
-    
+
     public double depositar(double valor) {
-        if( valor > 0 ) {
+        if (valor > 0) {
             double novoSaldo = this.getSaldo() + valor;
             this.setSaldo(novoSaldo);
         } else {
@@ -74,9 +75,9 @@ public class ContaCorrente {
         }
         return this.getSaldo();
     }
-    
+
     public double sacar(double valor) {
-        if( this.getSaldo() >= valor ) {
+        if (this.getSaldo() >= valor) {
             double novoSaldo = this.getSaldo() - valor;
             this.setSaldo(novoSaldo);
         } else {
@@ -84,9 +85,9 @@ public class ContaCorrente {
         }
         return this.getSaldo();
     }
-    
+
     public double sacarDoChequeEspecial(double valor) {
-        if( this.getSaldo() + this.getLimiteChequeEspecial() >= valor ) {
+        if (this.getSaldo() + this.getLimiteChequeEspecial() >= valor) {
             double novoSaldo = this.getSaldo() - valor;
             this.setSaldo(novoSaldo);
         } else {
@@ -94,9 +95,9 @@ public class ContaCorrente {
         }
         return this.getSaldo();
     }
-    
+
     public double transferir(double valor, int conta, int agencia) {
-        if( this.getSaldo() >= valor ) {
+        if (this.getSaldo() >= valor) {
             double novoSaldo = this.getSaldo() - valor;
             this.setSaldo(novoSaldo);
             System.out.println("Transferência efetuada com sucesso.");
@@ -108,31 +109,41 @@ public class ContaCorrente {
             System.out.println("Para a: AGÊNCIA: " + agencia + " CONTA: " + conta);
             System.out.println("______________________");
         }
-        
+
         return this.getSaldo();
     }
-    
+
     public boolean encerrarConta(int conta, int agencia) {
-        if( this.getNumeroConta() != conta ) {
+        if (this.getNumeroConta() != conta) {
             System.err.println("Conta inválida");
             return false;
         }
-        if( this.getNumeroAgencia() != agencia ) {
+        if (this.getNumeroAgencia() != agencia) {
             System.err.println("Agência inválida");
             return false;
         }
-        if( this.getStatusConta() ) {
+        if (this.getStatusConta()) {
             System.err.println("A conta já está inativa");
             return false;
         }
-        
-        this.setStatusConta( false );
+
+        this.setStatusConta(false);
         System.out.println("Conta encerrada com sucesso");
-        return true;       
-        
+        return true;
+
     }
-    
 
+    public void extrato() {
+        System.out.println("nome do cliente: " + this.getNomeCliente());
+        System.out.println("numero da conta: " + this.getNumeroConta());
+        System.out.println("numero da agencia: " + this.getNumeroAgencia());
+        if (statusConta = true) {
+            System.out.println("conta ativa");
 
-    
+        } else {
+            System.out.println("conta inativa");
+
+        }
+        System.out.println("seu limite de cheque especial: " + this.getLimiteChequeEspecial());
+    }
 }
